@@ -1,0 +1,52 @@
+#! /usr/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/lib64/ivl/system.vpi";
+:vpi_module "/usr/lib64/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib64/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib64/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib64/ivl/va_math.vpi";
+:vpi_module "/usr/lib64/ivl/v2009.vpi";
+S_0x55eea1619cd0 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -12;
+S_0x55eea1619e60 .scope module, "_05_imem" "_05_imem" 3 1;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 32 "pc_address";
+    .port_info 1 /OUTPUT 32 "instr_fetched";
+P_0x55eea15f0e20 .param/l "ADDR_WIDTH" 0 3 1, +C4<00000000000000000000000000100000>;
+P_0x55eea15f0e60 .param/l "INSTR_SIZE" 0 3 1, +C4<00000000000000000000010000000000>;
+P_0x55eea15f0ea0 .param/l "INSTR_WIDTH" 0 3 1, +C4<00000000000000000000000000100000>;
+L_0x55eea162aca0 .functor BUFZ 32, L_0x55eea162a910, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>;
+v0x55eea15df690_0 .net *"_ivl_0", 31 0, L_0x55eea162a910;  1 drivers
+v0x55eea162a330_0 .net *"_ivl_2", 31 0, L_0x55eea162ab10;  1 drivers
+v0x55eea162a410_0 .net *"_ivl_4", 29 0, L_0x55eea162a9e0;  1 drivers
+L_0x7ff1ae0d0018 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x55eea162a500_0 .net *"_ivl_6", 1 0, L_0x7ff1ae0d0018;  1 drivers
+v0x55eea162a5e0 .array "imem", 1023 0, 31 0;
+v0x55eea162a6f0_0 .net "instr_fetched", 31 0, L_0x55eea162aca0;  1 drivers
+o0x7ff1ae6b8108 .functor BUFZ 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x55eea162a7d0_0 .net "pc_address", 31 0, o0x7ff1ae6b8108;  0 drivers
+L_0x55eea162a910 .array/port v0x55eea162a5e0, L_0x55eea162ab10;
+L_0x55eea162a9e0 .part o0x7ff1ae6b8108, 2, 30;
+L_0x55eea162ab10 .concat [ 30 2 0 0], L_0x55eea162a9e0, L_0x7ff1ae0d0018;
+S_0x55eea15df500 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -12;
+    .scope S_0x55eea1619e60;
+T_0 ;
+    %vpi_call/w 3 10 "$readmemh", "init.mem", v0x55eea162a5e0 {0 0 0};
+    %end;
+    .thread T_0;
+    .scope S_0x55eea15df500;
+T_1 ;
+    %vpi_call/w 4 3 "$dumpfile", "sim_build/_05_imem\011.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x55eea1619e60 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "../rtl/_05_imem.sv";
+    "sim_build/cocotb_iverilog_dump.v";
